@@ -21,6 +21,21 @@ def tlsProtocol = tlsProtocol.value
 def url = httpsUrl.value
 def jsonMessage = jsonMessage.value
 
+try
+{
+  flowFile = session.write(flowFile,{inputStream,outputStream -> 
+  } as StreamCallback
+  
+  //transfer control to success 
+  session.transfer(flowFile,REL_SUCCESS)
+}
+catch(ex)
+{
+  flowFile = session.putAttribute(flowFile,"script_error_message",ex.getMessage())
+  flowFile = session.putAttribute(flowFile,"script_error",e.toString())
+  //transfer control to failure
+  session.transfer(flowFile,REL_FAILURE)                        
+}
 
 
 
