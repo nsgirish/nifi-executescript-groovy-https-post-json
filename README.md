@@ -1,4 +1,4 @@
-# nifi-groovy-invoke-https-post
+# HTTPS POST JSON request via NIFI ExecuteScript groovy processor
 
 ## Summary
 
